@@ -12,6 +12,10 @@ export type CommandLineArguments = {
   season: string;
   episode: string;
   url: string;
+  title: string;
+  releaseYear: string;
+  videoType: string;
+  videoCode: string;
 };
 
 export async function processOptions(sources: Array<Embed | Sourcerer>, options: CommandLineArguments) {

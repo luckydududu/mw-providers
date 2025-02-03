@@ -1,6 +1,6 @@
 import { getConfig } from '@/dev-cli/config';
 
-import { MovieMedia, ShowMedia } from '..';
+import { MovieMedia, ShowMedia, CustomVideoMedia } from '..';
 
 export async function makeTMDBRequest(url: string, appendToResponse?: string): Promise<Response> {
   const headers: {
@@ -50,6 +50,18 @@ export async function getMovieMediaDetails(id: string): Promise<MovieMedia> {
     releaseYear: Number(movie.release_date.split('-')[0]),
     tmdbId: id,
     imdbId: movie.imdb_id,
+  };
+}
+
+export async function getCustomVideoMediaDetails(title: string, releaseYear: string, videoType: string, videoCode: string): Promise<CustomVideoMedia> {
+  return {
+    type: 'custom_video',
+    title: title,
+    releaseYear: Number(releaseYear),
+    custom: {
+      customType: videoType,
+      customCode: videoCode,
+    },
   };
 }
 

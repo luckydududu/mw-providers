@@ -9,7 +9,7 @@ import { PreviewServer, build, preview } from 'vite';
 
 import { getConfig } from '@/dev-cli/config';
 import { logDeepObject } from '@/dev-cli/logging';
-import { getMovieMediaDetails, getShowMediaDetails } from '@/dev-cli/tmdb';
+import { getCustomVideoMediaDetails, getMovieMediaDetails, getShowMediaDetails } from '@/dev-cli/tmdb';
 import { CommandLineArguments } from '@/dev-cli/validate';
 
 import { MetaOutput, ProviderMakerOptions, makeProviders } from '..';
@@ -60,8 +60,10 @@ async function runBrowserScraping(
       let media;
       if (options.type === 'movie') {
         media = await getMovieMediaDetails(options.tmdbId);
-      } else {
+      } else if (options.type === 'show') {
         media = await getShowMediaDetails(options.tmdbId, options.season, options.episode);
+      } else {
+        media = await getCustomVideoMediaDetails(options.title, options.releaseYear, options.videoType, options.videoCode);
       }
       input = {
         media,
@@ -106,8 +108,10 @@ async function runActualScraping(
 
     if (options.type === 'movie') {
       media = await getMovieMediaDetails(options.tmdbId);
-    } else {
+    } else if (options.type === 'show') {
       media = await getShowMediaDetails(options.tmdbId, options.season, options.episode);
+    } else {
+      media = await getCustomVideoMediaDetails(options.title, options.releaseYear, options.videoType, options.videoCode);
     }
 
     return providers.runSourceScraper({

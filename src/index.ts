@@ -5,7 +5,7 @@ export type { RunOutput } from '@/runners/runner';
 export type { MetaOutput } from '@/entrypoint/utils/meta';
 export type { FullScraperEvents } from '@/entrypoint/utils/events';
 export type { Targets, Flags } from '@/entrypoint/utils/targets';
-export type { MediaTypes, ShowMedia, ScrapeMedia, MovieMedia } from '@/entrypoint/utils/media';
+export type { MediaTypes, ShowMedia, ScrapeMedia, MovieMedia, CustomVideoMedia } from '@/entrypoint/utils/media';
 export type { ProviderControls, RunnerOptions, EmbedRunnerOptions, SourceRunnerOptions } from '@/entrypoint/controls';
 export type { ProviderBuilder } from '@/entrypoint/builder';
 export type { ProviderMakerOptions } from '@/entrypoint/declare';
